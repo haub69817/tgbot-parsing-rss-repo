@@ -19,3 +19,12 @@ def send_matching_news():
             message = f"{title}\n{summary}\n{link}"
             bot.send_message(channel_id, message)
 
+# Set up a scheduled job to run every hour
+import schedule
+import time
+
+schedule.every().hour.do(send_matching_news)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
